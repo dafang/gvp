@@ -8,7 +8,7 @@ SYNOPSIS
     gvp stands for Go Versioning Packager and is based on [gst](http://github.com/tonchis/gst),
     a similar tool that provides vendoring functionality for Ruby gems.
 
-    The tool modifies your GOPATH to point to a local .godeps/ directory so that you
+    The tool modifies your GOPATH to point to a local Godeps/_workspace/ directory so that you
     can keep the dependencies of your project isolated there, it also modifies
     GOBIN and PATH to include the new GOPATH/bin directory.
 
@@ -29,15 +29,15 @@ EOF
 case "${1:-"in"}" in
   "init")
     echo ">> This command is deprecated, just run 'source gvp'."
-    mkdir -p .godeps/{src,pkg,bin}
+    mkdir -p Godeps/_workspace/{src,pkg,bin}
     ;;
   "version")
     echo ">> gvp v0.2.0"
     ;;
   "in")
-    mkdir -p .godeps/{src,pkg,bin}
-
-    GVP_DIR="$(pwd)/.godeps"
+    mkdir -p Godeps/_workspace/{src,pkg,bin}
+    
+    GVP_DIR="$(pwd)/Godeps/_workspace"
     GOBIN="$GVP_DIR/bin"
     GOPATH="$GVP_DIR:$PWD:$GOPATH"
     PATH="$GOBIN:$PATH"

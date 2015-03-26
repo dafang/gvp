@@ -4,7 +4,7 @@ GVP=../bin/gvp
 
 ## gvp init should create a .godeps/ directory.
 assert_raises "$GVP init"
-assert_raises "[ -d .godeps ]"
+assert_raises "[ -d Gedeps/_workspace ]"
 ## Cleanup
 rm -rf .godeps
 
@@ -16,13 +16,13 @@ ORIGINAL_PATH=$PATH
 
 source $GVP in
 
-assert_raises "[ -d .godeps ]"
-assert "echo $GOPATH" "$PWD/.godeps:$PWD:$ORIGINAL_GOPATH"
-assert "echo $GOBIN"  "$PWD/.godeps/bin"
-assert "echo $PATH"   "$PWD/.godeps/bin:$ORIGINAL_PATH"
+assert_raises "[ -d Gedeps/_workspace ]"
+assert "echo $GOPATH" "$PWD/Gedeps/_workspace:$PWD:$ORIGINAL_GOPATH"
+assert "echo $GOBIN"  "$PWD/Gedeps/_workspace/bin"
+assert "echo $PATH"   "$PWD/Gedeps/_workspace/bin:$ORIGINAL_PATH"
 
 
 ## Cleanup
-rm -rf .godeps
+rm -rf Gedeps/_workspace
 
 assert_end examples
